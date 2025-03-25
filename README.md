@@ -53,13 +53,22 @@ Prisma Studio is a graphical user interface (GUI) for viewing and editing data i
 ## Installation
 
 1. **Initialize Project with Yarn:**
+
+```
    yarn init
+```
 
 2. **Install Required Dependencies:**
+
+```
    yarn add prisma typescript ts-node @types/node -D
+```
 
 3. **Initialize TypeScript Configuration:**
+
+```
    npx tsc --init
+```
 
 - Open the generated `tsconfig.json` file and set `rootDir` to `src`:
   ```
