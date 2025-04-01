@@ -3,36 +3,44 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 const main = async () => {
-  //==================== Create a post ====================
-  const result = await prisma.post.create({
+  // const createUser = await prisma.user.create({
+  //   data: {
+  //     username: "emtiaz",
+  //     email: "emtiaz2060@gmail.com",
+  //     role: UserRole.admin,
+  //   },
+  // });
+  // const createProfile = await prisma.profile.create({
+  //   data: {
+  //     bio: " A cute boy",
+  //     userId: 1,
+  //   },
+  // });
+  // const createCategory = await prisma.category.create({
+  //   data: {
+  //     name: "software engineering",
+  //   },
+  // });
+  // console.log(createCategory);
+  const createPost = await prisma.post.create({
     data: {
-      title: "Prisma2",
-      content: "Prisma is a great tool for database management",
-      authorName: "EMTIAZ AHMED",
+      title: "How to create a post",
+      content: "This is a post content",
+      authorId: 1,
+      postCategory: {
+        create: {
+          category: {
+            connect: {
+              id: 1,
+            },
+          },
+        },
+      },
+    },
+    include: {
+      postCategory: true,
     },
   });
-  console.log(result);
-
-  const createMany = await prisma.post.createMany({
-    data: [
-      {
-        title: "Prisma3",
-        content: "I am learning prisma  ",
-        authorName: "EMTIAZ AHMED",
-      },
-      {
-        title: "Prisma4",
-        content: "Learning how to create many",
-        authorName: "EMTIAZ AHMED",
-      },
-      {
-        title: "Prisma5",
-        content: "Learning how to find uniqued  ",
-        authorName: "EMTIAZ AHMED",
-      },
-    ],
-  });
-
-  console.log(createMany);
+  console.log(createPost);
 };
 main();
