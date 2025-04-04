@@ -10,7 +10,18 @@ const relationalQueries = async () => {
       },
     })
     .post();
-  console.log(result);
+
+  //ralation filters
+  const publishedPostUsers = await prisma.user.findMany({
+    include: {
+      post: {
+        where: {
+          published: true,
+        },
+      },
+    },
+  });
+  console.log(publishedPostUsers, { depth: Infinity });
 };
 
 relationalQueries();
