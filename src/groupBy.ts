@@ -11,9 +11,6 @@ const groupBy = async () => {
     having: {
       published: true,
     },
-    where: {
-      published: true,
-    },
   });
   console.log("groupBy:", groupPost);
 };
